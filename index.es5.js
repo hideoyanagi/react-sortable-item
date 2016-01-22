@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _React = require('react/addons');
+var _React = require('react');
 
 var _React2 = _interopRequireWildcard(_React);
 
