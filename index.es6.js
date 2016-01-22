@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import classSet from 'class-set'
 
 var itemBeingDragged
@@ -35,7 +36,7 @@ export default React.createClass({
   },
 
   handleDragOver(event) {
-    var isOverSelf = React.findDOMNode(this.refs.item) === itemBeingDragged
+    var isOverSelf = ReactDOM.findDOMNode(this.refs.item) === itemBeingDragged
     var isOverTopHalf = event.clientY < (event.target.offsetTop + (event.target.offsetHeight / 2))
 
     if(isOverSelf) {

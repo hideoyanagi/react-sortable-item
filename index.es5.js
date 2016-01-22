@@ -1,34 +1,38 @@
 'use strict';
 
-var _interopRequireWildcard = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
-
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _React = require('react');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _React2 = _interopRequireWildcard(_React);
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _classSet = require('class-set');
 
-var _classSet2 = _interopRequireWildcard(_classSet);
+var _classSet2 = _interopRequireDefault(_classSet);
 
 var itemBeingDragged;
 
-exports['default'] = _React2['default'].createClass({
+exports['default'] = _react2['default'].createClass({
   displayName: 'index.es6',
 
   propTypes: {
-    className: _React2['default'].PropTypes.string,
-    type: _React2['default'].PropTypes.string,
-    data: _React2['default'].PropTypes.any,
-    handleAcceptTest: _React2['default'].PropTypes.func,
-    handleDrop: _React2['default'].PropTypes.func,
-    handleDragStart: _React2['default'].PropTypes.func,
-    handleDragOver: _React2['default'].PropTypes.func,
-    handleDragEnd: _React2['default'].PropTypes.func,
-    handleDragLeave: _React2['default'].PropTypes.func
+    className: _react2['default'].PropTypes.string,
+    type: _react2['default'].PropTypes.string,
+    data: _react2['default'].PropTypes.any,
+    handleAcceptTest: _react2['default'].PropTypes.func,
+    handleDrop: _react2['default'].PropTypes.func,
+    handleDragStart: _react2['default'].PropTypes.func,
+    handleDragOver: _react2['default'].PropTypes.func,
+    handleDragEnd: _react2['default'].PropTypes.func,
+    handleDragLeave: _react2['default'].PropTypes.func
   },
 
   getInitialState: function getInitialState() {
@@ -42,7 +46,7 @@ exports['default'] = _React2['default'].createClass({
 
   handleDragStart: function handleDragStart(event) {
     event.dataTransfer.setData(this.props.type || 'text/plain', this.props.data);
-    itemBeingDragged = _React2['default'].findDOMNode(this.refs.item);
+    itemBeingDragged = _react2['default'].findDOMNode(this.refs.item);
     this.setState({ dragging: true });
     if (this.props.handleDragStart) {
       this.props.handleDragStart(event);
@@ -50,7 +54,7 @@ exports['default'] = _React2['default'].createClass({
   },
 
   handleDragOver: function handleDragOver(event) {
-    var isOverSelf = _React2['default'].findDOMNode(this.refs.item) === itemBeingDragged;
+    var isOverSelf = _reactDom2['default'].findDOMNode(this.refs.item) === itemBeingDragged;
     var isOverTopHalf = event.clientY < event.target.offsetTop + event.target.offsetHeight / 2;
 
     if (isOverSelf) {
@@ -108,16 +112,16 @@ exports['default'] = _React2['default'].createClass({
   },
 
   render: function render() {
-    var classes = _classSet2['default'](this.props.className, {
-      dragging: this.state.dragging,
-      hover: this.state.hover,
+    var classes = (0, _classSet2['default'])(this.props.className, {
+      'dragging': this.state.dragging,
+      'hover': this.state.hover,
       'hover-above': this.state.hoverAbove,
       'hover-below': !this.state.hoverAbove
     });
 
-    return _React2['default'].cloneElement(this.props.children, {
-      ref: 'item',
-      draggable: 'true',
+    return _react2['default'].cloneElement(this.props.children, {
+      ref: "item",
+      draggable: "true",
       className: classes,
       onDragStart: this.handleDragStart,
       onDragOver: this.handleDragOver,
